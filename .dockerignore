@@ -1,0 +1,5 @@
+.git
+.gitignore
+proyecto-en-clase/vendor
+proyecto-en-clase/node_modules
+proyecto-en-clase/storage/logs
