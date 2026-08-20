@@ -10,11 +10,13 @@ Route::get('/', HomeController::class);
 
 Route::prefix('products')->controller(ProductsController::class)->group(function () {
 
-    // Mostrar todos los productos
+    // Mostrar listado de los productos
     Route::get('/', 'index');
 
     // Mostrar el formulario para crear un nuevo producto
     Route::get('/create', 'create');
+
+    Route::post('/', 'store');
 
     // Mostrar un producto específico por su ID
     Route::get('/{id}', 'show');
