@@ -5,14 +5,17 @@ use App\Http\Controllers\ProductsController;
 use Illuminate\Support\Facades\Route;
 
 
-    // Ladding page
-Route::get('/', HomeController::class );
+// Ladding page
+Route::get('/', HomeController::class);
+
+Route::prefix('products')->controller(ProductsController::class)->group(function () {
 
     // Mostrar todos los productos
-Route::get('/products', [ProductsController::class , 'index' ] );
+    Route::get('/', 'index');
 
     // Mostrar el formulario para crear un nuevo producto
-Route::get('/products/create', [ProductsController::class , 'create' ] );
+    Route::get('/create', 'create');
 
     // Mostrar un producto específico por su ID
-Route::get('/products/{id}', [ProductsController::class, 'show']);
+    Route::get('/{id}', 'show');
+});
