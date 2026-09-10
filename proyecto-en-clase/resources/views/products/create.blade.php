@@ -25,8 +25,13 @@
 
         <div class="field-row">
             <div class="field">
-                <label>Categoría</label>
-                <input type="text" name="category" placeholder="Ej. Calzado">
+                <label for="category_id">Categoría</label>
+                <select id="category_id" name="category_id" required>
+                    <option value="">Selecciona una categoría</option>
+                    @foreach ($categories as $category)
+                        <option value="{{ $category->id }}" @selected(old('category_id') == $category->id)>{{ $category->name }}</option>
+                    @endforeach
+                </select>
             </div>
 
             <div class="field">
