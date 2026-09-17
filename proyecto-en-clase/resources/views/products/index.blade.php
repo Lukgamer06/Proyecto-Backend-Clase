@@ -9,7 +9,9 @@
             <h1>Productos</h1>
             <p class="products-count">{{ $products->total() }} producto(s) registrados</p>
         </div>
-        <a href="{{ route('products.create') }}" class="btn-create">Nuevo producto</a>
+        @auth
+            <a href="{{ route('products.create') }}" class="btn-create">Nuevo producto</a>
+        @endauth
     </div>
 
     <div class="table-container">
@@ -30,12 +32,14 @@
                         <td>${{ number_format($product->price, 2) }}</td>
                         <td class="table-actions">
                             <a href="{{ route('products.show', $product) }}">Ver</a>
-                            <a href="{{ route('products.edit', $product) }}">Editar</a>
-                            <form action="{{ route('products.destroy', $product) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="action-delete">Eliminar</button>
-                            </form>
+                            @auth
+                                <a href="{{ route('products.edit', $product) }}">Editar</a>
+                                <form action="{{ route('products.destroy', $product) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="action-delete">Eliminar</button>
+                                </form>
+                            @endauth
                         </td>
                     </tr>
                 @empty

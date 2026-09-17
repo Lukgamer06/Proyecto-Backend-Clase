@@ -12,8 +12,16 @@ class Product extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'description', 'category_id', 'image_url', 'price', 'stock'
+        'name', 'description', 'category_id', 'image_url', 'price', 'stock',
     ];
+
+    protected function casts(): array
+    {
+        return [
+            'price' => 'decimal:2',
+            'stock' => 'integer',
+        ];
+    }
 
     public function category(): BelongsTo
     {

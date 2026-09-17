@@ -37,7 +37,9 @@
             <p>Creado: {{ $product->created_at?->format('d/m/Y H:i') }}</p>
             <p>Última actualización: {{ $product->updated_at?->format('d/m/Y H:i') }}</p>
 
-            <a href="{{ route('products.edit', $product) }}" class="btn-back">Editar producto</a>
+            @auth
+                <a href="{{ route('products.edit', $product) }}" class="btn-back">Editar producto</a>
+            @endauth
             <a href="{{ route('products.index') }}" class="btn-back">Volver al listado</a>
         </div>
 
