@@ -5,7 +5,7 @@
 @section('content')
 <div class="product-page">
 
-    <a href="/products" class="btn-back-link">&larr; Volver al listado</a>
+    <a href="{{ route('products.index') }}" class="btn-back-link">&larr; Volver al listado</a>
 
     <div class="product">
 
@@ -19,7 +19,7 @@
 
         <div class="info">
             @if($product->category)
-                <p class="category">{{ $product->category }}</p>
+                <p class="category">{{ $product->category->name }}</p>
             @endif
 
             <h2>{{ $product->name }}</h2>
@@ -34,7 +34,11 @@
                 {{ $product->stock > 0 ? $product->stock . ' unidades disponibles' : 'Sin stock disponible' }}
             </p>
 
-            <a href="/products" class="btn-back">Volver al listado</a>
+            <p>Creado: {{ $product->created_at?->format('d/m/Y H:i') }}</p>
+            <p>Última actualización: {{ $product->updated_at?->format('d/m/Y H:i') }}</p>
+
+            <a href="{{ route('products.edit', $product) }}" class="btn-back">Editar producto</a>
+            <a href="{{ route('products.index') }}" class="btn-back">Volver al listado</a>
         </div>
 
     </div>
